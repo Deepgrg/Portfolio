@@ -13,9 +13,9 @@ const router = express.Router();
 router.post(
   '/message',
   [
-    body('name').trim().isLength({ min: 3 }),
-    body('email').trim().isEmail(),
-    body('subject').trim(),
+    body('name').trim().isLength({ min: 3 }).notEmpty(),
+    body('email').trim().isEmail().notEmpty(),
+    body('subject').trim().notEmpty(),
     body('message').trim(),
   ],
   contactController.receiveMessage

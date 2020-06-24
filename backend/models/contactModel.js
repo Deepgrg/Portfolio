@@ -1,22 +1,12 @@
-const db = require('../utils/database');
+const mongoose = require('mongoose');
 
-class Message {
-  constructor(name, email, subject, message) {
-    this.name = name;
-    this.email = email;
-    this.subject = subject;
-    this.message = message;
-  }
-  save() {
-    const query =
-      'INSERT INTO message(message_creator_name,message_creator_email,message_creator_subject,message_creator_message) VALUES(?,?,?,?)';
-    return db.execute(query, [
-      this.name,
-      this.email,
-      this.subject,
-      this.message,
-    ]);
-  }
-}
+const Schema = mongoose.Schema;
 
-module.exports = Message;
+const messageSchema = new Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true },
+  subject: { type: String, required: true },
+  descriptionMessage: { type: String },
+});
+
+module.exports = mongoose.model('Message', messageSchema);

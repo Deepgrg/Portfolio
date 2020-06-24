@@ -4,10 +4,10 @@ POST  http://localhost:8000/api/contact/message
 content-type: application/json
 
 {
-    "name": "env variable test",
+    "name": "mongodb test",
     "email": "deepgrg03@gmail.com",
-    "subject": "rest client sample",
-    "message": "message from rest client"
+    "subject": "",
+    "message": "validating input"
 }
 
 ### 

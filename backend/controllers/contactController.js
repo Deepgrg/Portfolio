@@ -5,14 +5,19 @@ const Message = require('../models/contactModel');
 exports.receiveMessage = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    throw createError(422, 'Validation Failed, Entered data is incorrect');
+    throw createError(422, 'Validation Failed, Invalid Input');
   }
   const name = req.body.name;
   const email = req.body.email;
   const subject = req.body.subject;
-  const message = req.body.message;
+  const descriptionMessage = req.body.message;
 
-  const newMessage = new Message(name, email, subject, message);
+  const newMessage = new Message({
+    name: name,
+    email: email,
+    subject: subject,
+    descriptionMessage: descriptionMessage,
+  });
   newMessage
     .save()
     .then((result) => {
