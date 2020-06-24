@@ -38,10 +38,10 @@ app.use((err, req, res, next) => {
 let port = process.env.PORT || 8000;
 
 mongoose
-  .connect(
-    `mongodb+srv://root:${process.env.DATABASE_PASSWORD}@cluster0-exmb8.mongodb.net/${process.env.DATABASE_NAME}?retryWrites=true&w=majority`,
-    { useNewUrlParser: true, useUnifiedTopology: true }
-  )
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then((result) => {
     app.listen(port, () => {
       console.log(`Backend on port :${port}`);
