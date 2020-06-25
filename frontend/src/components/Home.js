@@ -1,8 +1,12 @@
+// core modules and third party modules
 import React from 'react';
-import Header from './Header';
-import Particles from 'react-particles-js';
 import { makeStyles } from '@material-ui/core/styles';
 
+// project modules
+import Header from './Header';
+import Particles from 'react-particles-js';
+
+// CSS Rules
 const useStyles = makeStyles({
   particlesCanvas: {
     postion: 'absolute',
@@ -14,7 +18,10 @@ const Home = () => {
   const classes = useStyles();
   return (
     <>
+      {/* Responsbile for the  Image and typography  of the body */}
       <Header />
+
+      {/* Responsible for the background particle effect */}
       <Particles
         canvasClassName={classes.particlesCanvas}
         params={{

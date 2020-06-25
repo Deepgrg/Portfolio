@@ -10,9 +10,11 @@ const router = express.Router();
 
 // to send the message
 // [name,email,subject,message]
+// api endpoint: <host>/api/contact/message/
 router.post(
   '/message',
   [
+    // validating the input
     body('name').trim().isLength({ min: 3 }).notEmpty(),
     body('email').trim().isEmail(),
     body('subject').trim().notEmpty(),

@@ -1,3 +1,4 @@
+// core modules and third party modules
 import React from 'react';
 import {
   Grid,
@@ -11,10 +12,13 @@ import {
   Button,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Image1 from '../images/avatar.png';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import GitHubIcon from '@material-ui/icons/GitHub';
 
+// project modules
+import Image1 from '../images/avatar.png';
+
+// dummy project
 const myProjects = [
   {
     projectTitle: 'Lorem Ipsum',
@@ -53,6 +57,7 @@ const myProjects = [
   },
 ];
 
+// CSS Rules
 const useStyles = makeStyles((theme) => ({
   media: {
     height: 0,

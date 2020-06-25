@@ -4,10 +4,9 @@ POST  https://sheltered-escarpment-12995.herokuapp.com/api/contact/message
 content-type: application/json
 
 {
-    "name": "heroku test",
-    "email": "deepgrg03@gmail.com",
-    "subject": "",
-    "message": "validating input"
+    "name": "Test",
+    "email": "test@test.com",
+    "subject": "test",
+    "message": "test"
 }
 
-### 

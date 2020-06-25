@@ -1,8 +1,11 @@
+// core and third party modules
 import React from 'react';
-import './App.css';
 import { Route, Switch } from 'react-router-dom';
-import Home from './components/Home';
 import { CssBaseline } from '@material-ui/core';
+
+// project modules
+import './App.css';
+import Home from './components/Home';
 import Navbar from './components/Navbar';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
@@ -14,6 +17,7 @@ function App() {
     <>
       <CssBaseline />
       <Navbar />
+      {/* Content of the body */}
       <Switch>
         <Route exact path='/' component={Home} />
         <Route path='/projects' component={Projects} />

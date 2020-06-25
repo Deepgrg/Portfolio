@@ -1,9 +1,13 @@
+// core modules and third party modules
 import React from 'react';
 import { Typography, ButtonBase, Grid, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Me from '../images/Me.svg';
 import Typed from 'react-typed';
 
+// project modules
+import Me from '../images/Me.svg';
+
+// CSS Rules
 const useStyles = makeStyles((theme) => ({
   image: {
     width: 180,

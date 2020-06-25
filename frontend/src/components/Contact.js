@@ -1,5 +1,5 @@
+// core modules and third party modules
 import React, { useState } from 'react';
-import FooterSocial from './FooterSocial';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -16,6 +16,10 @@ import MuiAlert from '@material-ui/lab/Alert';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
+// project modules
+import FooterSocial from './FooterSocial';
+
+// CSS Rules
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(5),
@@ -46,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// Validating the input data using Yup
 const validationSchema = Yup.object({
   name: Yup.string().required('Required'),
   email: Yup.string().email('Invalid Email Format'),
@@ -55,12 +60,14 @@ const validationSchema = Yup.object({
 
 const Contact = () => {
   const formik = useFormik({
+    // inital values of the form
     initialValues: {
       name: '',
       email: '',
       subject: '',
       descriptionMessage: '',
     },
+    // task to perform when then form is submitted
     onSubmit: (values) => {
       setLoading(true);
       axios
@@ -86,6 +93,7 @@ const Contact = () => {
           setStatus(false);
         });
     },
+    // validating the form
     validationSchema,
   });
 
@@ -93,6 +101,7 @@ const Contact = () => {
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [status, setStatus] = useState(null);
 
+  // to handle the sanckbar popup
   const snackbarHandler = (event, reason) => {
     if (reason === 'clickaway') {
       return;

@@ -1,3 +1,4 @@
+// core modules and third party modules
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -15,11 +16,12 @@ import {
   Typography,
   Box,
 } from '@material-ui/core';
-
 import { Home, ContactMail, Menu } from '@material-ui/icons';
 import AppsIcon from '@material-ui/icons/Apps';
 import PersonIcon from '@material-ui/icons/Person';
 import { makeStyles } from '@material-ui/core/styles';
+
+// project modules
 import avatar from '../images/avatar.svg';
 
 // CSS styles
@@ -61,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// Nvaigation Items
 const menuItems = [
   {
     listIcon: <Home />,
@@ -85,6 +88,9 @@ const menuItems = [
 ];
 
 const Navbar = () => {
+  const classes = useStyles();
+
+  // for the mobile view
   const [mobileView, setMobileView] = useState({
     right: false,
   });
@@ -92,7 +98,7 @@ const Navbar = () => {
     setMobileView({ ...mobileView, [slider]: open });
   };
 
-  const classes = useStyles();
+  // mapping the navigation items to create jsx
   const navLinks = menuItems.map((item, key) => {
     return (
       <Button
@@ -105,6 +111,8 @@ const Navbar = () => {
       </Button>
     );
   });
+
+  // view on mobile
   const mobile = () => {
     return (
       <Box

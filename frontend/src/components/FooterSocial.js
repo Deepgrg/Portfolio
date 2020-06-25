@@ -1,3 +1,4 @@
+// core moudles and third party modules
 import React from 'react';
 import {
   Divider,
@@ -13,6 +14,7 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 
+// CSS Rules
 const useStyles = makeStyles((theme) => ({
   typo: {
     fontFamily: 'Dancing Script',

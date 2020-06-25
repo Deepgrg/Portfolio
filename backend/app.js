@@ -37,6 +37,7 @@ app.use((err, req, res, next) => {
 // server on port 8000
 let port = process.env.PORT || 8000;
 
+// connecting to mongodb server
 mongoose
   .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,

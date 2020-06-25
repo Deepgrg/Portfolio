@@ -1,5 +1,5 @@
+// core modules and third party modules
 import React from 'react';
-import FooterSocial from './FooterSocial';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Typography,
@@ -11,10 +11,14 @@ import {
   Box,
   IconButton,
 } from '@material-ui/core';
-import Profile from '../images/ProfileMe.jpg';
 import clsx from 'clsx';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
+// project modules
+import Profile from '../images/ProfileMe.jpg';
+import FooterSocial from './FooterSocial';
+
+// CSS Rules
 const useStyles = makeStyles((theme) => ({
   layout: {
     display: 'flex',
@@ -61,6 +65,7 @@ const AboutMe = () => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
+  // to handle the expand more button
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
