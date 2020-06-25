@@ -1,0 +1,1 @@
+{"version":3,"sources":["App.css"],"names":[],"mappings":"AAAA,YACE,wBAAyB,CACzB,UACF","file":"main.c608f838.chunk.css","sourcesContent":["*::selection {\r\n  background-color: #7c53fa;\r\n  color: white;\r\n}\r\n"]}
