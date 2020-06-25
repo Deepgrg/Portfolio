@@ -1,10 +1,10 @@
 ### Example of frontend creating request to the backend
 
-POST  http://localhost:8000/api/contact/message
+POST  https://sheltered-escarpment-12995.herokuapp.com/api/contact/message
 content-type: application/json
 
 {
-    "name": "mongodb test",
+    "name": "heroku test",
     "email": "deepgrg03@gmail.com",
     "subject": "",
     "message": "validating input"

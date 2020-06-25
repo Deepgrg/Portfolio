@@ -13,6 +13,8 @@ import {
 import SendIcon from '@material-ui/icons/Send';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import MuiAlert from '@material-ui/lab/Alert';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -44,11 +46,49 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const validationSchema = Yup.object({
+  name: Yup.string().required('Required'),
+  email: Yup.string().email('Invalid Email Format').required('Required'),
+  subject: Yup.string().required('Required'),
+  descriptionMessage: Yup.string(),
+});
+
 const Contact = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [subject, setSubject] = useState('');
-  const [message, setMessage] = useState('');
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      email: '',
+      subject: '',
+      descriptionMessage: '',
+    },
+    onSubmit: (values) => {
+      setLoading(true);
+      axios
+        .post(
+          'https://sheltered-escarpment-12995.herokuapp.com/api/contact/message',
+          {
+            name: values.name,
+            email: values.email,
+            subject: values.subject,
+            message: values.message,
+          }
+        )
+        .then((res) => {
+          setLoading(false);
+          formik.resetForm();
+          setOpenSnackbar(true);
+          setStatus(true);
+        })
+
+        .catch((err) => {
+          setLoading(false);
+          setOpenSnackbar(true);
+          setStatus(false);
+        });
+    },
+    validationSchema,
+  });
+
   const [loading, setLoading] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [status, setStatus] = useState(null);
@@ -59,36 +99,9 @@ const Contact = () => {
     }
     setOpenSnackbar(false);
   };
-  const submitHandler = (e) => {
-    e.preventDefault();
-    setLoading(true);
-    axios
-      .post('http://localhost:8000/api/contact/message', {
-        name: name,
-        email: email,
-        subject: subject,
-        message: message,
-      })
-      .then((res) => {
-        setLoading(false);
-        clearInputs();
-        setOpenSnackbar(true);
-        setStatus(true);
-      })
 
-      .catch((err) => {
-        setLoading(false);
-        setOpenSnackbar(true);
-        setStatus(false);
-      });
-  };
   const classes = useStyles();
-  const clearInputs = () => {
-    setName('');
-    setEmail('');
-    setMessage('');
-    setSubject('');
-  };
+
   return (
     <Container component='main' maxWidth='xs'>
       <div className={classes.paper}>
@@ -99,15 +112,18 @@ const Contact = () => {
         <Typography component='h3' variant='h6' className={classes.typo}>
           I will Gladly answer you
         </Typography>
-        <form className={classes.form}>
+        <form className={classes.form} onSubmit={formik.handleSubmit}>
           <TextField
             variant='outlined'
             margin='normal'
             required
+            error={formik.errors.name && formik.touched.name ? true : false}
             fullWidth
             name='name'
-            value={name}
-            onChange={(event) => setName(event.target.value)}
+            helperText={formik.errors.name}
+            value={formik.values.name}
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
             label='Name'
             type='text'
             id='name'
@@ -116,14 +132,16 @@ const Contact = () => {
           <TextField
             variant='outlined'
             margin='normal'
-            required
             fullWidth
             id='email'
             label='Email Address'
             name='email'
+            error={formik.errors.email && formik.touched.email ? true : false}
+            helperText={formik.errors.email}
             autoComplete='email'
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
           <TextField
             variant='outlined'
@@ -131,25 +149,34 @@ const Contact = () => {
             fullWidth
             name='subject'
             label='Subject'
+            required
             type='text'
+            error={
+              formik.errors.subject && formik.touched.subject ? true : false
+            }
+            helperText={formik.errors.subject}
             id='subject'
-            value={subject}
-            onChange={(event) => setSubject(event.target.value)}
+            value={formik.values.subject}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
           <TextField
             id='message'
             label='Your Message'
+            name='descriptionMessage'
             variant='outlined'
+            helperText={formik.errors.descriptionMessage}
             multiline
             fullWidth
             rows={4}
-            value={message}
-            onChange={(event) => setMessage(event.target.value)}
+            value={formik.values.descriptionMessage}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
 
           <Button
             fullWidth
-            onClick={(e) => submitHandler(e)}
+            type='submit'
             variant='contained'
             className={classes.submit}
             startIcon={<SendIcon />}>
