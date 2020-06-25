@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
 
 const validationSchema = Yup.object({
   name: Yup.string().required('Required'),
-  email: Yup.string().email('Invalid Email Format').required('Required'),
+  email: Yup.string().email('Invalid Email Format'),
   subject: Yup.string().required('Required'),
   descriptionMessage: Yup.string(),
 });
